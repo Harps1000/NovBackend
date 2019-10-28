@@ -1,13 +1,13 @@
 const createRef = (ownerData, key, value) => {
   if (ownerData.length === 0) return {};
   const referenceObj = {};
-  console.log(ownerData)
+  
   ownerData.forEach(elem => {
     const keys = elem[key];
     const values = elem[value];
     return (referenceObj[keys] = values);
   });
-  console.log(referenceObj)
+  
   return referenceObj;
 };
 
