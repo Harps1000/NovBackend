@@ -8,7 +8,8 @@ describe("createRef", () => {
     const expected = {};
     expect(actual).to.eql(expected);
   });
-  xit("returns an object containing one key value pair containing a owner name and id", () => {
+
+  it("returns an object containing one key value pair containing a owner name and id", () => {
     const ownerData = [
       {
         owner_id: 1,
@@ -29,7 +30,7 @@ describe("createRef", () => {
         age: 17
       }
     ];
-    const actual = createRef(ownerData);
+    const actual = createRef(ownerData, "forename", "owner_id");
     const expected = {
       "firstname-b": 1,
       "firstname-c": 2,
