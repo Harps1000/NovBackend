@@ -1,0 +1,29 @@
+{
+  "name": "nov_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "listen.js",
+  "scripts": {
+    "setup-dbs": "psql -f db/setup.sql",
+    "migrate-make": "knex migrate:make",
+    "migrate-latest": "knex migrate:latest",
+    "migrate-rollback": "knex migrate:rollback",
+    "test": "mocha ./spec/*.spec.js",
+    "seed": "knex seed:run",
+    "dev": "nodemon listen.js",
+    "start": "node listen.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.20.0",
+    "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
+  }
+}
