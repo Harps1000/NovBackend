@@ -13,7 +13,7 @@ exports.getArticles = (req, res, next) => {
         status: 404
       });
     } else {
-      res.send({ Articles: result});
+      res.send({ articles: result});
     }
   })
   .catch(next);
