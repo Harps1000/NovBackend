@@ -16,6 +16,7 @@ exports.postingComment = ( body , { article_id }) => {
   let comment = {}
   
   comment.author = comm.username;
+  comment.body = comm.body;
   
   comment.article_id = article_id;
   comment.created_at = new Date(Date.now());

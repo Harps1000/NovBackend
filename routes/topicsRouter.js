@@ -1,10 +1,10 @@
 const topicsRouter = require('express').Router();
-const fetchAllTopics = require("../controllers/topicsControllers")
+const getAllTopics = require("../controllers/topicsControllers")
 const { methodNotAllowed } = require('../errors');
 
 topicsRouter
   .route('/')
-  .get(fetchAllTopics)
+  .get(getAllTopics)
   .all(methodNotAllowed);
 
 
