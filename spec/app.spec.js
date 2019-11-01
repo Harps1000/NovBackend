@@ -14,7 +14,7 @@ describe("/", function() {
   beforeEach(() => connection.seed.run());
   after(() => connection.destroy());
 
-  xdescribe("GET /api", () => {
+  describe("GET /api", () => {
     it("GET status:200", () => {
       return request(app)
         .get("/api")
@@ -25,7 +25,7 @@ describe("/", function() {
     });
   });
 
-  xdescribe("GET /api/topics", () => {
+  describe("GET /api/topics", () => {
     it("Responds with an array of topic objects, correct properties", () => {
       return request(app)
         .get("/api/topics")
@@ -40,7 +40,7 @@ describe("/", function() {
 
 
 
-  xdescribe("GET /api/users/:username", () => {
+  describe("GET /api/users/:username", () => {
     it("Responds with correct User Object info", () => {
       return request(app)
         .get("/api/users/lurker")
@@ -64,7 +64,7 @@ describe("/", function() {
     });
   });
 
-  xdescribe("GET /api/articles/:article_id", () => {
+  describe("GET /api/articles/:article_id", () => {
      it("Responds with an article objects, correct properties", () => {
       return request(app)
         .get("/api/articles/1")
@@ -98,7 +98,7 @@ describe("/", function() {
     });
   });
 
-  xdescribe("PATCH /api/articles/:article_id", () => {
+  describe("PATCH /api/articles/:article_id", () => {
     it("Request body accepts a vote object and returns updated article", () => {
       return request(app)
         .patch("/api/articles/1")
@@ -135,7 +135,7 @@ describe("/", function() {
       });
     
    
-    xdescribe("POST /api/articles/:article_id/comments", () => {
+    describe("POST /api/articles/:article_id/comments", () => {
       it("Status:201: Successfully added comment & returns it", () => {
         return request(app)
           .post("/api/articles/6/comments")
@@ -173,7 +173,7 @@ describe("/", function() {
       });
     });
   
-    xdescribe("GET /api/articles/:article_id/comments", () => {
+    describe("GET /api/articles/:article_id/comments", () => {
       it("status:200, successfully responds with Comments by article ID, with default order of descending", () => {
         return request(app)
           .get("/api/articles/1/comments")
@@ -327,7 +327,7 @@ describe("/", function() {
       });
     });
   
-    xdescribe("PATCH /api/comments/:comment_id", () => {
+    describe("PATCH /api/comments/:comment_id", () => {
       it("status:200: updates comment votes and responds with updated comment", () => {
         return request(app)
           .patch("/api/comments/1")
@@ -383,7 +383,7 @@ describe("/", function() {
       });
     });
   
-    xdescribe("DELETE /api/comments/:comment_id", () => {
+    describe("DELETE /api/comments/:comment_id", () => {
       it("Responds with status 204 and no content", () => {
         return request(app)
           .delete("/api/comments/2")

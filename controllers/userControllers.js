@@ -1,4 +1,4 @@
-const fetchAuser = require("../models/userModels");
+const {fetchAuser} = require("../models/userModels");
 
 const getAuser = (req, res, next) => {
   fetchAuser(req.params)

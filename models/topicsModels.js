@@ -1,9 +1,18 @@
 const connection = require('../db/connection');
 
-const fetchAllTopics = () => {
-
-   
+exports.fetchAllTopics = () => {
  return connection.select('*').from('topics').then((data) => {return {'topics':data}});
   };
 
-  module.exports = fetchAllTopics
+
+
+
+exports.checkATopic = topic => {
+        return connection("topics")
+          .where("slug", topic)
+          .then(data => {
+            if (data.length === 0)
+              return Promise.reject({ message: "Not Found", status: 404 });
+            else return true;
+          });
+      };

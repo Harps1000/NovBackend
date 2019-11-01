@@ -7,15 +7,10 @@ const {
 exports.getArticles = (req, res, next) => {
   getAllArticles(req.query)
   .then(result => {
-    if (result.length === 0) {
-      return Promise.reject({
-        message: "Not Found",
-        status: 404
-      });
-    } else {
-      res.send({ articles: result});
+    
+    res.send({ articles: result});
     }
-  })
+  )
   .catch(next);
 };
 

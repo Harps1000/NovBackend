@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const { createRef, formatData, createDate, formatData2 } = require("../utils/utils");
 
-xdescribe("createRef", () => {
+describe("createRef", () => {
   it("returns an empty object, when passed an empty array", () => {
     const input = [];
     const actual = createRef(input);
@@ -39,7 +39,7 @@ xdescribe("createRef", () => {
     expect(actual).to.eql(expected);
   });
 });
-xdescribe("formatData", () => {
+describe("formatData", () => {
   it("returns a new empty array, when passed an empty array", () => {
     const shopData = [];
     const referenceObj = {};
@@ -69,7 +69,7 @@ xdescribe("formatData", () => {
     expect(actual).to.not.equal(shopData);
   });
 });
-xdescribe("generic reference function (createRef2)", () => {
+describe("generic reference function (createRef2)", () => {
   it("creates a reference object using passed key and value", () => {
     const inputArr = [
       { name: "bob", id: 1 },
@@ -86,7 +86,7 @@ xdescribe("generic reference function (createRef2)", () => {
   });
 });
 
-xdescribe("updates the timestamp", ()=>{
+describe("updates the timestamp", ()=>{
     it("takes an array of data, and updates the timestamp field", ()=>{
         const input = [{
             title: 'Running a Node App',
@@ -111,7 +111,7 @@ const time = new Date(1471522072389)
     });
 });
 
-xdescribe("updates the keys", ()=>{
+describe("updates the keys", ()=>{
   it("takes an array of data, and updates the key field", ()=>{
       const input = [{ created_at: "2017-03-17T22:27:49.732Z",
         article_id: 19,
