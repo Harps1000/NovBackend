@@ -2,7 +2,7 @@ const {
     postingComment,
     getingCommentsByArticleID,
     updateCommentVote,
-    deleteComment
+    deleteComment,
   } = require("../models/commentsModels");
   
   
@@ -49,7 +49,6 @@ const {
 
     postingComment(req.body, req.params)
       .then(result => {
-        console.log(result[0])
         res.status(201).send({ comment: result[0] });
       })
       .catch(next);

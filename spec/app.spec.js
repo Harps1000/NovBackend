@@ -135,7 +135,7 @@ describe("/", function() {
       });
     
    
-    describe("POST /api/articles/:article_id/comments", () => {
+    xdescribe("POST /api/articles/:article_id/comments", () => {
       it("Status:201: Successfully added comment & returns it", () => {
         return request(app)
           .post("/api/articles/6/comments")
@@ -173,7 +173,7 @@ describe("/", function() {
       });
     });
   
-    describe("GET /api/articles/:article_id/comments", () => {
+    xdescribe("GET /api/articles/:article_id/comments", () => {
       it("status:200, successfully responds with Comments by article ID, with default order of descending", () => {
         return request(app)
           .get("/api/articles/1/comments")
@@ -327,7 +327,7 @@ describe("/", function() {
       });
     });
   
-    describe("PATCH /api/comments/:comment_id", () => {
+    xdescribe("PATCH /api/comments/:comment_id", () => {
       it("status:200: updates comment votes and responds with updated comment", () => {
         return request(app)
           .patch("/api/comments/1")
@@ -383,7 +383,7 @@ describe("/", function() {
       });
     });
   
-    describe("DELETE /api/comments/:comment_id", () => {
+    xdescribe("DELETE /api/comments/:comment_id", () => {
       it("Responds with status 204 and no content", () => {
         return request(app)
           .delete("/api/comments/2")

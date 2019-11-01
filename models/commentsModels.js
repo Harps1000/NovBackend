@@ -40,3 +40,4 @@ exports.updateCommentVote = ({ inc_votes }, { comment_id }) => {
     .returning("*");
 };
 
+
