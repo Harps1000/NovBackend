@@ -7,8 +7,8 @@ const {
 exports.getArticles = (req, res, next) => {
   getAllArticles(req.query)
   .then(result => {
-    
-    res.send({ articles: result});
+    if(result[1]===true){res.send({ articles: []})}
+    else res.send({ articles: result});
     }
   )
   .catch(next);

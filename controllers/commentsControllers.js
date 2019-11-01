@@ -10,6 +10,7 @@ const {
   exports.getCommentsByArticleID = (req, res, next) => {
     getingCommentsByArticleID(req.query, req.params)
       .then(result => {
+        if(result[1]===true){res.send({ comments: []})}
         res.status(200).send({ comments: result });
       })
       .catch(next);

@@ -286,7 +286,7 @@ return request(app)
 .get("/api/articles?author=lurker")
 .expect(200)
 .then(({body}) =>{
-  expect(body.articles).to.eql([[], true, true])
+  expect(body.articles).to.eql([])
 })
       })
 
@@ -295,7 +295,7 @@ it('gives 200 and an empty array when topic has no acticles', ()=>{
   .get("/api/articles?topic=paper")
   .expect(200)
   .then(({body}) =>{
-    expect(body.articles).to.eql([[], true, true])
+    expect(body.articles).to.eql([])
   })
 
       })
