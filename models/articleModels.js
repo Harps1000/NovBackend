@@ -11,6 +11,17 @@ exports.fetchArticleById = ({ article_id }) => {
     .groupBy("articles.article_id");
 };
 
+exports.checkArticleById = article_id  => {
+  return connection("articles")
+    .select("articles.*")
+    .where("articles.article_id", "=", article_id)
+    .then(data => {
+      if (data.length === 0)
+        return Promise.reject({ message: "Not Found", status: 404 });
+      else return true;
+    });
+};
+
 exports.patchArticleVotes = ({ article_id }, { inc_votes }) => {
   return connection("articles")
     .where("articles.article_id", "=", article_id)
@@ -39,7 +50,6 @@ exports.getAllArticles = query => {
         let authorPromise = true;
         let topicPromise = true;
         if (query.author) {
-          console.log(query.author);
           authorPromise =  checkAuser(query.author);
         }
         if (query.topic) {

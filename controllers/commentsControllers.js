@@ -10,19 +10,13 @@ const {
   exports.getCommentsByArticleID = (req, res, next) => {
     getingCommentsByArticleID(req.query, req.params)
       .then(result => {
-        if (result.length === 0) {
-          return Promise.reject({ message: "Not Found", status: 404 });
-        }
         res.status(200).send({ comments: result });
       })
       .catch(next);
   };
   
   exports.updateCommentVotes = (req, res, next) => {
-    if (!req.body.inc_votes) {
-      next({ message: "Incorrect Key", status: 400 });
-      return;
-    }
+
     updateCommentVote(req.body, req.params)
       .then(result => {
         if (result.length === 0) {

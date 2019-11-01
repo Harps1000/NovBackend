@@ -1,5 +1,5 @@
 const connection = require("../db/connection");
-
+const {checkArticleById} = require("./articleModels")
 
 
 exports.getingCommentsByArticleID = (query, { article_id }) => {
@@ -8,8 +8,15 @@ exports.getingCommentsByArticleID = (query, { article_id }) => {
   return connection("comments")
     .select("comment_id", "votes", "created_at", "author", "body")
     .where("article_id", "=", article_id)
-    .orderBy(sorting, ordering);
-}; 
+    .orderBy(sorting, ordering)
+    .then(data => {
+      if (data.length === 0) {
+        let artPromise = true;
+            artPromise = checkArticleById(article_id)
+        return Promise.all([data, artPromise]);
+      } else return data;
+    });
+};
 
 exports.postingComment = ( body , { article_id }) => {
   let comm = { ...body };
@@ -36,7 +43,7 @@ exports.deleteComment = ({ comment_id }) => {
 exports.updateCommentVote = ({ inc_votes }, { comment_id }) => {
   return connection("comments")
     .where("comment_id", "=", comment_id)
-    .increment("votes", inc_votes)
+    .increment("votes", inc_votes || 0)
     .returning("*");
 };
 

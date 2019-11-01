@@ -280,6 +280,25 @@ describe("/", function() {
             expect(body.articles).to.be.ascendingBy("title");
           });
       });
+
+      it('gives 200 and an empty array when user has no acticles', ()=>{
+return request(app)
+.get("/api/articles?author=lurker")
+.expect(200)
+.then(({body}) =>{
+  expect(body.articles).to.eql([[], true, true])
+})
+      })
+
+it('gives 200 and an empty array when topic has no acticles', ()=>{
+  return request(app)
+  .get("/api/articles?topic=paper")
+  .expect(200)
+  .then(({body}) =>{
+    expect(body.articles).to.eql([[], true, true])
+  })
+
+      })
       it("Successfully filters the results by queries", () => {
         return request(app)
           .get("/api/articles?sort_by=title&order=asc&author=rogersop&topic=cats")
@@ -355,23 +374,21 @@ describe("/", function() {
             expect(body.message).to.equal("Bad Request");
           });
       });
-      it("Error Handling: status:400, responds with error msg when request body has incorrect key", () => {
+      it("Incorrect Key: status:200, responds with unchanged comment when request body has incorrect key", () => {
         return request(app)
           .patch("/api/comments/10")
           .send({ random: 6 })
-          .expect(400)
+          .expect(200)
           .then(({ body }) => {
-            expect(body.message).to.equal("Incorrect Key");
+            expect(body.comment).to.eql({ comment_id: 10,
+              author: 'icellusedkars',
+              article_id: 1,
+              votes: 0,
+              created_at: '2008-11-24T12:36:03.389Z',
+              body: 'git push origin master' });
           });
       });
-      it("Error Handling: status:400, responds with error msg when request body undefined", () => {
-        return request(app)
-          .patch("/api/comments/2")
-          .expect(400)
-          .then(({ body }) => {
-            expect(body.message).to.equal("Incorrect Key");
-          });
-      });
+    
       it("Error Handling: status:400 inc_votes is non-integer", () => {
         return request(app)
           .patch("/api/comments/3")
